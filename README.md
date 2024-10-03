@@ -6,23 +6,21 @@
 **Shift Lama** : D
 
 ### Screenshot Aplikasi Toko Kita
-
-<img src="tokokita/login_toko.png" alt="Login Page" width="300"/>
-<img src="tokokita/regist_toko.png" alt="Registration Page" width="300"/>
-<img src="tokokita/list_produk.png" alt="List Produk" width="300"/>
-<img src="tokokita/detail_produk.png" alt="Detail Produk" width="300"/>
-<img src="tokokita/edit_produk.png" alt="Edit Produk" width="300"/>
-<img src="tokokita/add_produk.png" alt="Add Produk" width="300"/>
-
 #### a. Halaman Login
-![Screenshot Halaman Login](login_toko.png) 
+<img src="login_toko.png" alt="Screenshot Halaman Login" width="300"/>
+
 #### b. Halaman Registrasi
-![Screenshot Halaman Registrasi](regist_toko.png)
+<img src="regist_toko.png" alt="Screenshot Halaman Registrasi" width="300"/>
+
 #### c. Halaman List Produk
-![Screenshot List Produk](list_produk.png) 
+<img src="list_produk.png" alt="Screenshot List Produk" width="300"/>
+
 #### d. Halaman Detail Produk
-![Screenshot Detail Produk](detail_produk.png) 
+<img src="detail_produk.png" alt="Screenshot Detail Produk" width="300"/>
+
 #### e. Halaman Edit Produk
-![Screenshot Edit Produk](edit_produk.png)
+<img src="edit_produk.png" alt="Screenshot Edit Produk" width="300"/>
+
 #### f. Halaman Tambah Produk
-![Screenshot Tambah Produk](add_produk.png)
+<img src="add_produk.png" alt="Screenshot Tambah Produk" width="300"/>
+

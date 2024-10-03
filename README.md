@@ -6,6 +6,14 @@
 **Shift Lama** : D
 
 ### Screenshot Aplikasi Toko Kita
+
+<img src="tokokita/login_toko.png" alt="Login Page" width="300"/>
+<img src="tokokita/regist_toko.png" alt="Registration Page" width="300"/>
+<img src="tokokita/list_produk.png" alt="List Produk" width="300"/>
+<img src="tokokita/detail_produk.png" alt="Detail Produk" width="300"/>
+<img src="tokokita/edit_produk.png" alt="Edit Produk" width="300"/>
+<img src="tokokita/add_produk.png" alt="Add Produk" width="300"/>
+
 #### a. Halaman Login
 ![Screenshot Halaman Login](login_toko.png) 
 #### b. Halaman Registrasi

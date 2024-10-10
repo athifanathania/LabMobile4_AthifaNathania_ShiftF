@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tokokita/bloc/login_bloc.dart';
+import 'package:tokokita/helpers/user_info.dart';
+import 'package:tokokita/ui/produk_page.dart';
 import 'package:tokokita/ui/registrasi_page.dart';
+import 'package:tokokita/widget/warning_dialog.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,7 +14,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  // ignore: unused_field
   bool _isLoading = false;
 
   final _emailTextboxController = TextEditingController();
@@ -20,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login Athifaaa'),
+        title: const Text('Login'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -32,10 +35,8 @@ class _LoginPageState extends State<LoginPage> {
                 _emailTextField(),
                 _passwordTextField(),
                 _buttonLogin(),
-                const SizedBox(
-                  height: 30,
-                ),
-                _menuRegistrasi()
+                const SizedBox(height: 30),
+                _menuRegistrasi(),
               ],
             ),
           ),
@@ -51,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
       keyboardType: TextInputType.emailAddress,
       controller: _emailTextboxController,
       validator: (value) {
-        // validasi harus diisi
+        // Validasi harus diisi
         if (value!.isEmpty) {
           return 'Email harus diisi';
         }
@@ -68,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
       obscureText: true,
       controller: _passwordTextboxController,
       validator: (value) {
-        // validasi harus diisi
+        // Jika password harus diisi
         if (value!.isEmpty) {
           return "Password harus diisi";
         }
@@ -82,10 +83,54 @@ class _LoginPageState extends State<LoginPage> {
     return ElevatedButton(
       child: const Text("Login"),
       onPressed: () {
-        // ignore: unused_local_variable
         var validate = _formKey.currentState!.validate();
+        if (validate) {
+          if (!_isLoading) _submit();
+        }
       },
     );
+  }
+
+  void _submit() {
+    _formKey.currentState!.save();
+    setState(() {
+      _isLoading = true;
+    });
+
+    LoginBloc.login(
+      email: _emailTextboxController.text,
+      password: _passwordTextboxController.text,
+    ).then((value) async {
+      if (value.code == 200) {
+        await UserInfo().setToken(value.token.toString());
+        await UserInfo().setUserID(int.parse(value.userID.toString()));
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const ProdukPage()),
+        );
+      } else {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) => const WarningDialog(
+            description: "Login gagal, silahkan coba lagi",
+          ),
+        );
+      }
+    }, onError: (error) {
+      print(error);
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) => const WarningDialog(
+          description: "Login gagal, silahkan coba lagi",
+        ),
+      );
+    });
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   // Membuat menu untuk membuka halaman registrasi

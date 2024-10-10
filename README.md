@@ -33,6 +33,7 @@ Halaman ini digunakan pengguna untuk melakukan registrasi mendaftar ke sistem
 #### a. Form Registrasi
 <img src="form-registrasi.png" alt="Screenshot Registrasi" width="300"/>
 Pada gambar diatas dilakukan proses registrasi dengan menginputkan formulir registrasi yaitu nama, email, password, dan konfirmasi password. 
+
 ```dart
 void _submit() {
     _formKey.currentState!.save();
@@ -71,6 +72,7 @@ void _submit() {
   }
 }
 ```
+
 Kode di atas berfungsi untuk melakukan proses registrasi dengan mengambil input dari pengguna berupa nama, email, dan password melalui formulir. Saat tombol registrasi ditekan, fungsi `_submit()` akan dijalankan. Fungsi ini pertama-tama menyimpan input formulir menggunakan `FormState.save()`, lalu mengubah status `_isLoading` menjadi `true` untuk menunjukkan bahwa proses sedang berlangsung. Kemudian, data registrasi dikirim ke backend melalui metode `RegistrasiBloc.registrasi` yang akan melakukan HTTP POST ke endpoint API dengan mengirimkan data dalam bentuk JSON. Jika registrasi berhasil, dialog sukses akan ditampilkan kepada pengguna, dan jika gagal, dialog peringatan muncul. Setelah proses selesai, status `_isLoading` kembali diubah menjadi `false`. Perlu dicatat, meskipun dalam penjelasan disebutkan adanya konfirmasi password, potongan kode ini tidak menunjukkan adanya logika untuk memvalidasi kesesuaian password dan konfirmasi password.
 
 #### b. Pop Up Sukses Registrasi

@@ -275,6 +275,7 @@ Halaman ini digunakan pengguna untuk melihat detail produk yang dipilih
 #### a. Produk Page
 <img src="detail-prod.png" alt="Screenshot Detail Produk" width="300"/>
 Kelas `ProdukDetail` menerima objek `Produk` sebagai parameter dan menampilkan informasi terkait produk tersebut, seperti kode, nama, dan harga.
+
 **- Menampilkan Detail Produk**
 
 ```dart
@@ -389,7 +390,7 @@ Dalam potongan kode di atas, fungsi `addProduk()` menerima parameter berupa obje
 Halaman ini digunakan pengguna untuk mengedit produk yang dipilih
 #### a. Form Edit
 <img src="form-edit.png" alt="Screenshot Edit Produk" width="300"/>
-Berikut adalah parafrase penjelasan untuk setiap potongan kode yang disertakan.
+
 **- Navigasi ke Halaman Edit**
 
 ```dart

@@ -1,16 +1,26 @@
-# tokokita
+# TOKO KITA
 
-A new Flutter project.
+**Nama**       : Athifa Nathania  
+**NIM**        : H1D022031  
+**Shift Baru** : F
+**Shift Lama** : D
 
-## Getting Started
+### Screenshot Aplikasi Toko Kita
+#### a. Halaman Login
+<img src="login_toko.png" alt="Screenshot Halaman Login" width="300"/>
 
-This project is a starting point for a Flutter application.
+#### b. Halaman Registrasi
+<img src="regist_toko.png" alt="Screenshot Halaman Registrasi" width="300"/>
 
-A few resources to get you started if this is your first Flutter project:
+#### c. Halaman List Produk
+<img src="list_produk.png" alt="Screenshot List Produk" width="300"/>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+#### d. Halaman Detail Produk
+<img src="detail_produk.png" alt="Screenshot Detail Produk" width="300"/>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### e. Halaman Edit Produk
+<img src="edit_produk.png" alt="Screenshot Edit Produk" width="300"/>
+
+#### f. Halaman Tambah Produk
+<img src="add_produk.png" alt="Screenshot Tambah Produk" width="300"/>
+

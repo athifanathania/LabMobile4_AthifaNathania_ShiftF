@@ -77,11 +77,12 @@ class _ProdukDetailState extends State<ProdukDetail> {
         OutlinedButton(
           child: const Text("Ya"),
           onPressed: () {
-            ProdukBloc.deleteProduk(id: int.parse(widget.produk!.id! as String)).then(
-                (value) => {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ProdukPage()))
-                    }, onError: (error) {
+            ProdukBloc.deleteProduk(id: int.parse(widget.produk!.id! as String))
+                .then(
+                    (value) => {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const ProdukPage()))
+                        }, onError: (error) {
               showDialog(
                   context: context,
                   builder: (BuildContext context) => const WarningDialog(

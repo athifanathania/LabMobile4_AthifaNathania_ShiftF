@@ -5,7 +5,8 @@
 **Shift Baru** : F
 **Shift Lama** : D
 
-### Screenshot Aplikasi Toko Kita
+## TUGAS 4
+## Screenshot Aplikasi Toko Kita
 #### a. Halaman Login
 <img src="login_toko.png" alt="Screenshot Halaman Login" width="300"/>
 
@@ -24,3 +25,11 @@
 #### f. Halaman Tambah Produk
 <img src="add_produk.png" alt="Screenshot Tambah Produk" width="300"/>
 
+
+## TUGAS 5
+## Penjelasan Aplikasi
+### 1. Halaman Registrasi
+Halaman ini digunakan pengguna untuk melakukan registrasi memasuki sistem
+#### a. Form Registrasi
+<img src="form-registrasi.png" alt="Screenshot Registrasi" width="300"/>
+Pada gambar diatas dilakukan proses registrasi dengan menginputkan formulir registrasi yaitu nama, email, password, dan konfirmasi password. 

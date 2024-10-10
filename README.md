@@ -77,6 +77,7 @@ Kode di atas berfungsi untuk melakukan proses registrasi dengan mengambil input 
 
 #### b. Pop Up Sukses Registrasi
 <img src="popup-regist.png" alt="Screenshot Registrasi" width="300"/>
+
 ```dart
 RegistrasiBloc.registrasi(
       nama: _namaTextboxController.text,
@@ -109,6 +110,7 @@ RegistrasiBloc.registrasi(
   }
 }
 ```
+
 Jika registrasi berhasil, maka 'SuccessDialog' akan muncul dengan pesan "Registrasi berhasil, silahkan login" seperti pada gambar di atas. Namun, jika terjadi kesalahan, sistem akan menampilkan 'WarningDialog' dengan pesan "Registrasi gagal, silahkan coba lagi". Pada bagian `RegistrasiBloc.registrasi`, data nama, email, dan password dikirim. Ketika proses registrasi berhasil, dialog sukses akan muncul dengan opsi untuk menutup dialog menggunakan `Navigator.pop`. Sebaliknya, jika terjadi error, dialog peringatan akan ditampilkan. Setelah itu, status `_isLoading` diubah kembali menjadi `false` untuk mengakhiri proses loading.
 
 ### 2. Halaman Login
@@ -116,6 +118,7 @@ Halaman ini digunakan pengguna untuk melakukan login memasuki sistem
 #### a. Form Login
 <img src="form-login.png" alt="Screenshot Login" width="300"/>
 Pada halaman ini, pengguna dapat melakukan proses login dengan mengisi form login yang tersedia. Form tersebut mencakup input untuk email dan password yang wajib diisi oleh pengguna, seperti yang terlihat pada gambar di atas. Setelah mengisi form, pengguna dapat menekan tombol "Login" yang terletak di bawah form. Begitu tombol ditekan, sistem akan melakukan validasi untuk memastikan data yang dimasukkan memenuhi syarat. Jika validasi berhasil, fungsi `_submit()` akan dipanggil untuk melanjutkan proses. Pada fungsi `_buttonLogin()`, terdapat tombol ElevatedButton yang menjalankan validasi menggunakan `_formKey.currentState!.validate()`. Jika validasi berhasil dan status `_isLoading` adalah `false`, maka fungsi `_submit()` akan dipanggil.
+
 ```dart
 Widget _buttonLogin() {
     return ElevatedButton(
@@ -129,9 +132,11 @@ Widget _buttonLogin() {
     );
   }
 ```
+
 #### b. Gagal Login
 <img src="popup-login.png" alt="Screenshot Login" width="300"/>
 Jika terdapat kesalahan pada data yang dimasukkan pengguna dalam form login, akan muncul popup peringatan dari 'WarningDialog()' dengan pesan "Login gagal, silahkan coba lagi". Ketika pengguna menekan tombol "OK" pada popup peringatan tersebut, popup akan ditutup.
+
 ```dart
 } else {
         showDialog(
@@ -143,9 +148,11 @@ Jika terdapat kesalahan pada data yang dimasukkan pengguna dalam form login, aka
         );
       }
 ```
+
 #### c. Berhasil Login
 <img src="sukses-login.png" alt="Screenshot Login" width="300"/>
 Pada fungsi `_submit()`, `LoginBloc.login()` dipanggil untuk mengirimkan data email dari `_emailTextboxController` dan password dari `_passwordTextboxController` ke server menggunakan metode POST. Setelah menerima respons dari server, data tersebut diubah menjadi objek model Login melalui fungsi `fromJson`. Jika login berhasil dan respons server menunjukkan kode 200, token dan userID yang diterima dari server akan disimpan menggunakan `UserInfo()` untuk keperluan di masa mendatang. Selanjutnya, pengguna akan diarahkan ke halaman `ProdukPage()` dengan menggunakan `Navigator.pushReplacement`.
+
 ```dart
 void _submit() {
     _formKey.currentState!.save();
@@ -165,10 +172,12 @@ void _submit() {
           MaterialPageRoute(builder: (context) => const ProdukPage()),
         );
 ```
+
 ### 3. Halaman Tampil/List Produk
 Halaman ini digunakan pengguna untuk melihat produk apa saja yang ada dalam sistem
 #### a. Produk Page
 <img src="sukses-login.png" alt="Screenshot List Produk" width="300"/>
+
 ```dart
 body: FutureBuilder<List>(
         future: ProdukBloc.getProduks(),
@@ -187,6 +196,7 @@ body: FutureBuilder<List>(
   }
 }
 ```
+
 Pada potongan kode ini, terdapat widget `FutureBuilder` yang digunakan untuk melakukan pemanggilan asinkron pada method `ProdukBloc.getProduks()`, yang mengembalikan daftar produk. Dalam builder `FutureBuilder`, jika terjadi kesalahan saat pengambilan data, kesalahan tersebut akan dicetak ke konsol. Jika snapshot memiliki data, maka widget `ListProduk` akan ditampilkan dengan mengoper daftar produk yang diterima. Jika data belum tersedia, widget `CircularProgressIndicator` ditampilkan di tengah layar untuk menandakan bahwa proses pengambilan data masih berlangsung.
 
 ```dart
@@ -205,6 +215,7 @@ class ListProduk extends StatelessWidget {
   }
 }
 ```
+
 Pada class `ListProduk`, widget ini merupakan stateless widget yang menerima parameter `list`, yang merupakan daftar produk. Dalam method `build`, widget ini menggunakan `ListView.builder` untuk membuat daftar item produk. `itemCount` diatur berdasarkan panjang daftar, dan `itemBuilder` digunakan untuk membangun setiap item dalam daftar dengan memanggil widget `ItemProduk`, yang menerima produk individu dari daftar sebagai parameter.
 
 ```dart
@@ -232,6 +243,7 @@ class ItemProduk extends StatelessWidget {
   }
 }
 ```
+
 Class `ItemProduk` adalah stateless widget yang menampilkan informasi dari objek `Produk`. Dalam method `build`, widget ini menggunakan `GestureDetector` untuk mendeteksi ketukan pada item produk. Ketika item diketuk, pengguna akan diarahkan ke halaman `ProdukDetail`, dan produk yang dipilih akan diteruskan sebagai parameter. Di dalam widget `Card`, terdapat widget `ListTile` yang menampilkan nama produk sebagai judul dan harga produk sebagai subjudul, memberikan informasi yang jelas dan terstruktur kepada pengguna.
 
 ### b. Pengambilan Data dari API
@@ -264,6 +276,7 @@ Halaman ini digunakan pengguna untuk melihat detail produk yang dipilih
 <img src="detail-prod.png" alt="Screenshot Detail Produk" width="300"/>
 Kelas `ProdukDetail` menerima objek `Produk` sebagai parameter dan menampilkan informasi terkait produk tersebut, seperti kode, nama, dan harga.
 **- Menampilkan Detail Produk**
+
 ```dart
 @override
 Widget build(BuildContext context) {
@@ -284,6 +297,7 @@ Widget build(BuildContext context) {
   );
 }
 ```
+
 Dalam method `build`, halaman diatur dengan `Scaffold`, yang terdiri dari `AppBar` untuk judul dan `body` yang menampilkan informasi produk. Informasi seperti kode produk, nama produk, dan harga ditampilkan menggunakan widget `Text`, dan memanggil method `_tombolHapusEdit()` untuk menampilkan tombol edit dan hapus.
 
 ### 5. Halaman Tambah Produk
@@ -291,6 +305,7 @@ Halaman ini digunakan pengguna untuk menambahkan data produk
 #### a. Form Tambah Produk
 <img src="add-prod.png" alt="Screenshot Tambah Produk" width="300"/>
 **- Tombol Submit**
+
 ```dart
 Widget _buttonSubmit() {
   return OutlinedButton(
@@ -312,9 +327,11 @@ Widget _buttonSubmit() {
   );
 }
 ```
+
 Pada potongan kode ini, terdapat sebuah tombol yang berfungsi sebagai tombol submit. Ketika tombol ditekan, sistem akan melakukan validasi terhadap form menggunakan `_formKey.currentState!.validate()`. Jika validasi berhasil dan tidak sedang dalam proses loading, sistem akan memeriksa apakah objek `produk` ada. Jika ada, berarti pengguna ingin melakukan pembaruan data produk, sehingga metode `ubah()` akan dipanggil. Jika tidak ada, maka pengguna akan menambahkan produk baru, dan metode `simpan()` akan dipanggil.
 
 **- Fungsi Simpan**
+
 ```dart
 simpan() {
   setState(() {
@@ -329,9 +346,11 @@ simpan() {
         builder: (BuildContext context) => const ProdukPage()));
   },
 ```
+
 Fungsi `simpan()` bertanggung jawab untuk menyimpan produk baru. Pertama, status loading diaktifkan dengan `setState()`. Kemudian, objek `Produk` baru dibuat dengan `id` diatur ke `null`. Data produk diambil dari controller teks yang ada dan disimpan dalam objek `createProduk`. Selanjutnya, metode `ProdukBloc.addProduk()` dipanggil untuk mengirim data produk baru ke backend. Jika permintaan berhasil, pengguna diarahkan ke halaman `ProdukPage()`.
 
 **- Penanganan Kesalahan**
+
 ```dart
 }, onError: (error) {
   showDialog(
@@ -342,10 +361,12 @@ Fungsi `simpan()` bertanggung jawab untuk menyimpan produk baru. Pertama, status
   );
 });
 ```
+
 Dalam potongan kode ini, jika terjadi kesalahan saat menyimpan produk baru, dialog peringatan akan muncul dengan pesan "Simpan gagal, silahkan coba lagi". Ini memberikan umpan balik langsung kepada pengguna mengenai kegagalan penyimpanan dan menyarankan mereka untuk mencoba lagi. Dialog ini membantu meningkatkan pengalaman pengguna dengan memberikan informasi yang jelas tentang apa yang salah.
 
 #### b. Penyimpanan Server
 Fungsi `addProduk()` yang terdapat dalam `produk_bloc.dart` memiliki peran penting dalam mengirimkan data produk baru ke server API. Variabel `apiUrl` menyimpan alamat URL API yang digunakan untuk menambah produk baru. Selanjutnya, `body` digunakan untuk mengemas data produk yang akan dikirim ke server dalam format JSON. Fungsi ini kemudian menggunakan metode POST untuk mengirim data ke endpoint API, dan menunggu respon dari server untuk menentukan apakah proses penyimpanan berhasil atau tidak.
+
 ```dart
 static Future addProduk({Produk? produk}) async {
     String apiUrl = ApiUrl.createProduk;
@@ -361,6 +382,7 @@ static Future addProduk({Produk? produk}) async {
     return jsonObj['status'];
 }
 ```
+
 Dalam potongan kode di atas, fungsi `addProduk()` menerima parameter berupa objek `Produk`. Setelah menentukan URL API, ia menyusun objek `body` yang berisi informasi produk. Kemudian, fungsi `post()` pada objek `Api` digunakan untuk mengirimkan permintaan ke server. Respon yang diterima kemudian diubah menjadi format JSON dan statusnya dikembalikan untuk menunjukkan hasil dari operasi penyimpanan tersebut.
 
 ### 6. Proses Edit Produk
@@ -369,6 +391,7 @@ Halaman ini digunakan pengguna untuk mengedit produk yang dipilih
 <img src="form-edit.png" alt="Screenshot Edit Produk" width="300"/>
 Berikut adalah parafrase penjelasan untuk setiap potongan kode yang disertakan.
 **- Navigasi ke Halaman Edit**
+
 ```dart
 OutlinedButton(
   child: const Text("EDIT"),
@@ -384,9 +407,11 @@ OutlinedButton(
   },
 )
 ```
+
 Ketika pengguna menekan tombol "EDIT", aplikasi akan mengarahkan pengguna ke halaman `ProdukForm()`, sambil mengirimkan data produk yang akan diedit sebagai parameter. Hal ini memungkinkan pengguna untuk melihat dan mengedit detail produk yang dipilih.
 
 **- Memeriksa Mode Edit atau Tambah**
+
 ```dart
 isUpdate() {
   if (widget.produk != null) {
@@ -403,9 +428,11 @@ isUpdate() {
   }
 }
 ```
+
 Metode `isUpdate()` digunakan untuk memeriksa apakah ada data produk yang diterima dari halaman sebelumnya. Jika ada, aplikasi akan mengatur judul halaman menjadi "UBAH PRODUK" dan tombol submit menjadi "UBAH". Data produk akan diisi ke dalam kontrol teks yang sesuai, sehingga pengguna dapat melihat informasi yang akan diedit. Jika tidak ada data produk yang diterima, judul akan diatur menjadi "TAMBAH PRODUK" dan tombol submit menjadi "SIMPAN".
 
 **- Proses Pembaruan Produk**
+
 ```dart
 ubah() {
   setState(() {
@@ -431,6 +458,7 @@ ubah() {
   });
 }
 ```
+
 Fungsi `ubah()` dipanggil saat pengguna menekan tombol "Ubah" setelah mengisi formulir edit. Di sini, status loading diaktifkan, dan objek `Produk` baru dibuat berdasarkan data yang diisi oleh pengguna. Data produk yang telah diperbarui dikirim ke backend menggunakan `ProdukBloc.updateProduk()`. Jika pembaruan berhasil, pengguna diarahkan kembali ke halaman `ProdukPage`. Jika pembaruan gagal, pesan kesalahan ditampilkan melalui `WarningDialog`. Status loading kemudian dimatikan setelah proses selesai.
 
 **Produk Berhasil di Edit**
@@ -440,15 +468,18 @@ Fungsi `ubah()` dipanggil saat pengguna menekan tombol "Ubah" setelah mengisi fo
 Ini digunakan pengguna untuk menghapus produk yang dipilih
 #### a. Konfirmasi Hapus
 <img src="confirm-del.png" alt="Screenshot Delete Produk" width="300"/>
+
 ```dart
 OutlinedButton(
   child: const Text("DELETE"),
   onPressed: () => confirmHapus(),
 )
 ```
+
 Pada halaman detail produk, terdapat tombol "DELETE" yang memungkinkan pengguna untuk menghapus data produk. Ketika tombol ini ditekan, metode `confirmHapus()` akan dipanggil untuk menampilkan dialog konfirmasi, yang bertujuan untuk memastikan apakah pengguna benar-benar ingin menghapus data tersebut. Ini memberikan kesempatan kepada pengguna untuk mempertimbangkan kembali sebelum melakukan tindakan penghapusan.
 
 **- Konfirmasi Penghapusan**
+
 ```dart
 void confirmHapus() {
   AlertDialog alertDialog = AlertDialog(
@@ -479,6 +510,7 @@ void confirmHapus() {
   showDialog(builder: (context) => alertDialog, context: context);
 }
 ```
+
 Method `confirmHapus()` menampilkan dialog konfirmasi penghapusan dengan `AlertDialog`. Jika pengguna menekan "Ya", produk akan dihapus dengan memanggil `ProdukBloc.deleteProduk()`, dan pengguna akan diarahkan kembali ke halaman `ProdukPage`. Jika terjadi kesalahan saat penghapusan, akan muncul `WarningDialog` dengan pesan error. Jika pengguna menekan "Batal", dialog akan ditutup tanpa melakukan tindakan lebih lanjut.
 
 **Produk Berhasil di Hapus**
@@ -489,6 +521,7 @@ Ini digunakan pengguna untuk keluar dari sistem
 #### a. Tombol Logout
 <img src="logout.png" alt="Screenshot Logout" width="300"/>
 Pada halaman List Produk, terdapat menu samping (side menu) yang menyertakan opsi untuk logout. Dengan memanfaatkan widget `Drawer`, pengguna dapat memilih fitur logout yang akan memanggil fungsi `LogoutBloc.logout()` untuk menghapus informasi pengguna yang tersimpan. Setelah logout berhasil, pengguna akan diarahkan kembali ke halaman login.
+
 ```dart
 drawer: Drawer(
           child: ListView(
@@ -509,10 +542,12 @@ drawer: Drawer(
           ),
         ),
 ```
+
 Dalam potongan kode di atas, menu logout ditampilkan sebagai `ListTile` di dalam `Drawer`. Ketika pengguna mengetuk opsi logout, fungsi `LogoutBloc.logout()` dipanggil untuk menghapus informasi pengguna. Setelah itu, pengguna akan diarahkan ke halaman login dengan menggunakan `Navigator.of(context).pushAndRemoveUntil()`, yang memastikan semua rute sebelumnya dihapus dari tumpukan navigasi.
 
 #### b. onTap
 Pada bagian ini, ketika pengguna menekan opsi logout di menu samping, fungsi `onTap` akan memanggil metode `LogoutBloc.logout()`. Setelah logout berhasil, pengguna akan diarahkan kembali ke halaman login dengan menghapus semua rute sebelumnya dari tumpukan navigasi. Ini memastikan bahwa pengguna tidak dapat kembali ke halaman yang memerlukan autentikasi setelah logout.
+
 ```dart
 onTap: () async {
   await LogoutBloc.logout().then((value) => {
